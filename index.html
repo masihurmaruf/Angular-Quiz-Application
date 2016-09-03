@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="quizApp">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Quiz Application</title>
+        <!-- Latest compiled and minified Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <div class="container">
+           <div class="page-header">
+                <h1>Turtle Facts Quiz</h1>
+                <h3>Read the following articles realted to turtles brfore you start the <b>Quiz</b></h3> 
+           </div>   
+           <div ng-controller="listCtrl as list">
+                <div class="row">
+                    <div class="col-md-6" ng-repeat="turtle in list.data">
+                        <div class="well well-sm">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <img ng-src="{{turtle.image_url}}" alt="Turtle image" class="img-rounded img-responsive well-img">
+                                </div>
+                                <div class="col-md-6">
+                                    <h4>{{turtle.type}}</h4>
+                                    <p><strong>Locations: </strong>                  {{turtle.habitat}}
+                                    </p>
+                                    <p><strong>Size: </strong>
+                                        {{turtle.size}}
+                                    </p>
+                                    <p><strong>Lifespan: </strong>{{turtle.lifespan}}</p>
+                                    <p><strong>Diet: </strong>{{turtle.diet}}</p>
+                                    <button class="btn btn-info btn-md pull-right"
+                                    data-toggle="modal" data-target="#turtle-info"
+                                    ng-click="list.changeActiveTurtle(turtle)">Learn More</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal" id="turtle-info">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h2>{{list.activeTurtle.type}}</h2>&#215;
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-xs-8 col-xs-offset-2">
+                                        <img ng-src="{{list.activeTurtle.image_url}}" class="img-rounded img-responsive">
+                                    </div>
+                                </div>
+                                <div class="row top-buffer">
+                                    <div class="col-md-6">
+                                        <p><strong>Location: </strong>{{list.activeTurtle.habitat}}</p>
+                                        <p><strong>Size: </strong>{{list.activeTurtle.size}}</p>
+                                        <p><strong>Lifespan: </strong>{{list.activeTurtle.lifespan}}</p>
+                                        <p><strong>Diet: </strong>{{list.activeTurtle.diet}}</p>
+                                    </div>
+                                    <div class="col-xs-12 top-buffer">
+                                        <p>{{list.activeTurtle.description}}</p>
+                                        <button class="btn btn-danger btn-md pull-right" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+           </div>    
+        </div>
+        
+        
+        <!-- Angular JS -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+        <!-- Jquery -->
+        <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+        <!-- Latest compiled and minified Bootstrap JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        
+        <!-- Custom JS Scripts -->
+        <script src="js/app.js"></script>
+        <script src="js/controllers/list.js"></script>
+    </body>
+</html>

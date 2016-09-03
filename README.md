@@ -1,0 +1,1 @@
+This app is based on Angular JS, Bootstrap CSS.
