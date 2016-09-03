@@ -15,9 +15,14 @@
                 <h1>Turtle Facts Quiz</h1>
                 <h3>Read the following articles realted to turtles brfore you start the <b>Quiz</b></h3> 
            </div>   
-           <div ng-controller="listCtrl as list">
+           <div ng-controller="listCtrl as list" ng-hide="list.quizMatrix.quizActive">
+               <form class="form-inline well well-sm clearfix">
+                   <span class="glyphicon glyphicon-search"></span>
+                   <input type="text" placeholder="Search..." class="form-control" ng-model="list.search">
+                   <button class="btn btn-warning btn-md pull-right" ng-click="list.activateQuiz()"><strong>Start Quiz</strong></button>
+               </form>
                 <div class="row">
-                    <div class="col-md-6" ng-repeat="turtle in list.data">
+                    <div class="col-md-6" ng-repeat="turtle in list.data | filter:list.search">
                         <div class="well well-sm">
                             <div class="row">
                                 <div class="col-md-6">
@@ -68,7 +73,11 @@
                         </div>
                     </div>
                 </div>
-           </div>    
+           </div> <!-- List Controller -->
+           
+           <div ng-controller="quizCtrl as quiz" ng-show="quiz.quizMatrix.quizActive">
+               <h1>Quiz</h1>
+           </div>   
         </div>
         
         
@@ -82,5 +91,7 @@
         <!-- Custom JS Scripts -->
         <script src="js/app.js"></script>
         <script src="js/controllers/list.js"></script>
+        <script src="js/controllers/quiz.js"></script>
+        <script src="js/factories/quizMatrix.js"></script>
     </body>
 </html>
